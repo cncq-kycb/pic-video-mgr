@@ -66,7 +66,7 @@ Required services:
 3. JDK1.8 or latter
 
 Command to deploy:
-0. `cd pic-video-mgr/`
-1. `mvn clean`
-2. `mvn install`
-3. `nohup java -Dloader.path=./lib -jar fileupload-0.0.1-SNAPSHOT.jar &`
+1. `cd pic-video-mgr/`
+2. `mvn clean`
+3. `mvn install`
+4. `nohup java -Dloader.path=./lib -jar fileupload-0.0.1-SNAPSHOT.jar &`
