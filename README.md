@@ -2,7 +2,7 @@
 A demo for managing image files and video files based on Spring Boot
 ## [Interface document](https://docs.qq.com/doc/DQmRBR2V4dmVFYmJP)
 ## Third Party Modules
-* `org.bytedeco.javacv-platform`
+* org.bytedeco.javacv-platform
   ```xml
   <dependency>
       <groupId>org.bytedeco</groupId>
@@ -10,7 +10,32 @@ A demo for managing image files and video files based on Spring Boot
       <version>1.3.1</version>
   </dependency>
   ```
+* org.mybatis.spring.boot.mybatis-spring-boot-starter
+  ```xml
+  <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>2.1.1</version>
+  </dependency>
+  ```
+* org.projectlombok.lombok
+  ```xml
+  <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+  </dependency>
+  ```
+* mysql.mysql-connector-java
+  ```xml
+  <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+  </dependency>
+  ```
 ## Properties Definition
+You can create a file named *application.yaml* in *src/main/resources* with content as below：
 ```yaml
 spring:
   servlet:
@@ -34,3 +59,14 @@ url-cfg:
   pic-url: "http://127.0.0.1:8080/static/pics/"     # 图片url prefix
   video-url: "http://127.0.0.1:8080/static/videos/" # 视频url prefix
 ```
+## How to deploy
+Required services:
+1. MySQL8.0.21 or latter 
+2. Maven3.6.3 or latter
+3. JDK1.8 or latter
+
+Command to deploy:
+0. `cd pic-video-mgr/`
+1. `mvn clean`
+2. `mvn install`
+3. `nohup java -Dloader.path=./lib -jar fileupload-0.0.1-SNAPSHOT.jar &`
