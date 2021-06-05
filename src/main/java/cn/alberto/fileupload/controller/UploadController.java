@@ -5,6 +5,7 @@ import cn.alberto.fileupload.model.PicCommit;
 import cn.alberto.fileupload.model.PicNameCommit;
 import cn.alberto.fileupload.service.UploadService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,8 +43,8 @@ public class UploadController {
     /*
     一次性上传多个图片
      */
-    @PostMapping(value = "/upload-pics", consumes = "multipart/form-data")
-    public HashMap<String, Object> uploadPics(@RequestPart("pics") MultipartFile[] pics, @RequestParam("picName") String picName) throws IOException {
+    @PostMapping(value = "/upload-pics", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public HashMap<String, Object> uploadPics(@RequestPart(value = "pics", required = false) MultipartFile[] pics, @RequestParam("picName") String picName) throws IOException {
         HashMap<String, Object> ret = new HashMap<>();
         if (pics == null || pics.length == 0) {
             ret.put("msg", "未选择或上传任何文件");
@@ -66,7 +67,7 @@ public class UploadController {
             PicCommit picCommit = new PicCommit();
             picCommit.setPicNameId(picNameCommit.getPicNameId());
             picCommit.setPicPath(picsDir + fileName);
-            picCommit.setPicUrl(basePicUrl + picName);
+            picCommit.setPicUrl(basePicUrl + fileName);
             picDao.addPic(picCommit);
         }
         ret.put("msg", "上传成功");
